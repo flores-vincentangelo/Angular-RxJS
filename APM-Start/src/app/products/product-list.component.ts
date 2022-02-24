@@ -12,7 +12,7 @@ import { ProductService } from './product.service';
   styleUrls: ['./product-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductListComponent implements OnInit/*,  OnDestroy */ {
+export class ProductListComponent /* implements OnInit,  OnDestroy */ {
   pageTitle = 'Product List';
   errorMessage = '';
   categories: ProductCategory[] = [];
@@ -20,26 +20,27 @@ export class ProductListComponent implements OnInit/*,  OnDestroy */ {
   // products: Product[] = [];
   // sub!: Subscription;
 
-  products$: Observable<Product[]> | undefined;
+  products$: Observable<Product[]> = this.productService.products$
+    .pipe(
+      catchError( err => {
+        this.errorMessage = err;
+        // return of([]);
+        // or
+        return EMPTY;
+      })
+    );
 
   constructor(private productService: ProductService) { }
 
-  ngOnInit(): void {
-    // this.sub = this.productService.getProducts()
-    //   .subscribe({
-      //     next: products => this.products = products,
-      //     error: err => this.errorMessage = err
-      //   });
-      this.products$ = this.productService.getProducts()
-      .pipe(
-        catchError( err => {
-          this.errorMessage = err;
-          // return of([]);
-          // or
-          return EMPTY;
-        })
-      );
-  }
+  // ngOnInit(): void {
+  //   // this.sub = this.productService.getProducts()
+  //   //   .subscribe({
+  //     //     next: products => this.products = products,
+  //     //     error: err => this.errorMessage = err
+  //     //   });
+  //     this.products$ = this.productService.getProducts()
+
+  // }
 
   // ngOnDestroy(): void {
   //   this.sub.unsubscribe();

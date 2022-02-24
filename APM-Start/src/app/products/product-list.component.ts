@@ -35,6 +35,7 @@ export class ProductListComponent implements OnInit/*,  OnDestroy */ {
         catchError( err => {
           this.errorMessage = err;
           // return of([]);
+          // or
           return EMPTY;
         })
       );

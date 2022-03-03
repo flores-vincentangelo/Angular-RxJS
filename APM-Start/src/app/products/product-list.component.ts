@@ -20,7 +20,7 @@ export class ProductListComponent /* implements OnInit,  OnDestroy */ {
   // products: Product[] = [];
   // sub!: Subscription;
 
-  products$: Observable<Product[]> = this.productService.products$
+  products$: Observable<Product[]> = this.productService.productsWithCategory$
     .pipe(
       catchError( err => {
         this.errorMessage = err;

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { catchError, EMPTY, Observable, of } from 'rxjs';
+import { catchError, EMPTY, filter, map, Observable, of } from 'rxjs';
 
 // import { Subscription } from 'rxjs';
 import { ProductCategory } from '../product-categories/product-category';
@@ -16,6 +16,7 @@ export class ProductListComponent /* implements OnInit,  OnDestroy */ {
   pageTitle = 'Product List';
   errorMessage = '';
   categories: ProductCategory[] = [];
+  selectedCategoryId = 1;
 
   // products: Product[] = [];
   // sub!: Subscription;
@@ -29,6 +30,11 @@ export class ProductListComponent /* implements OnInit,  OnDestroy */ {
         return EMPTY;
       })
     );
+
+  productsSimpleFilter$ = this.productService.productsWithCategory$
+  .pipe(
+    map(products => products.filter(item => item.categoryId === this.selectedCategoryId))
+  );
 
   constructor(private productService: ProductService) { }
 

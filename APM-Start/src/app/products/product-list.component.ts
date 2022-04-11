@@ -1,11 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { catchError, combineLatest, EMPTY, filter, map, Observable, of, startWith, Subject } from 'rxjs';
-
-// import { Subscription } from 'rxjs';
-import { ProductCategory } from '../product-categories/product-category';
 import { ProductCategoryService } from '../product-categories/product-category.service';
-
-import { Product } from './product';
 import { ProductService } from './product.service';
 
 @Component({

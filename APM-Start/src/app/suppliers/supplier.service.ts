@@ -22,9 +22,13 @@ export class SupplierService {
     )
 
   constructor(private http: HttpClient) {
-    this.suppliersWithMap$.subscribe(
-      // item =>  console.log('map result', item)
-    )
+
+    this.suppliersWithConcatMap$.subscribe({
+      next: item => console.log('concatMap result', item)
+    })
+    // this.suppliersWithMap$.subscribe(
+    //   // item =>  console.log('map result', item)
+    // )
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {

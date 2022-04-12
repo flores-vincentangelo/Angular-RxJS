@@ -37,6 +37,7 @@ export class SupplierService {
 
     this.suppliersWithConcatMap$.subscribe({next: item => console.log('concatMap result', item)});
     this.suppliersWithMergeMap$.subscribe({next: item => console.log('mergeMap result', item)});
+    this.suppliersWithSwitchMap$.subscribe({next: item => console.log('switchMap result', item)});
     // this.suppliersWithMap$.subscribe(
     //   // item =>  console.log('map result', item)
     // )

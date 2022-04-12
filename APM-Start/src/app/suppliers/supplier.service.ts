@@ -15,23 +15,23 @@ export class SupplierService {
     map(id => this.http.get<Supplier>(`${this.suppliersUrl}/${id}`))
   );
 
-  // suppliersWithConcatMap$ = of(1,5,8)
-  //   .pipe(
-  //     tap(id => console.log('concatMap source Observable', id)),
-  //     concatMap(id => this.http.get<Supplier>(`${this.suppliersUrl}/${id}`))
-  //   );
+  suppliersWithConcatMap$ = of(1,5,8)
+    .pipe(
+      tap(id => console.log('concatMap source Observable', id)),
+      concatMap(id => this.http.get<Supplier>(`${this.suppliersUrl}/${id}`))
+    );
 
-  //   suppliersWithMergeMap$ = of(1,5,8)
-  //   .pipe(
-  //     tap(id => console.log('mergeMap source Observable', id)),
-  //     mergeMap(id => this.http.get<Supplier>(`${this.suppliersUrl}/${id}`))
-  //   );
+    suppliersWithMergeMap$ = of(1,5,8)
+    .pipe(
+      tap(id => console.log('mergeMap source Observable', id)),
+      mergeMap(id => this.http.get<Supplier>(`${this.suppliersUrl}/${id}`))
+    );
 
-  //   suppliersWithSwitchMap$ = of(1,5,8)
-  //   .pipe(
-  //     tap(id => console.log('switchMap source Observable', id)),
-  //     switchMap(id => this.http.get<Supplier>(`${this.suppliersUrl}/${id}`))
-  //   );
+    suppliersWithSwitchMap$ = of(1,5,8)
+    .pipe(
+      tap(id => console.log('switchMap source Observable', id)),
+      switchMap(id => this.http.get<Supplier>(`${this.suppliersUrl}/${id}`))
+    );
 
   constructor(private http: HttpClient) {
 

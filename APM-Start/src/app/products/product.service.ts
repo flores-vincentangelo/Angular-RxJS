@@ -47,6 +47,15 @@ export class ProductService {
     ),
     tap(product => console.log('selectedProduct', product)),
     shareReplay(1)
+  );
+
+  selectedProductSuppliers$ = combineLatest([
+    this.selectedProduct$,
+    this.supplierService.suppliers$
+  ]) .pipe(
+    map(([selectedProduct, suppliers]) =>
+      suppliers.filter(supplier => selectedProduct?.supplierIds?.includes(supplier.id))
+    )
   )
 
   private productInsertedSubject = new Subject<Product>();

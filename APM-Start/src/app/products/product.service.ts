@@ -59,7 +59,7 @@ export class ProductService {
   //   )
   // )
 
-    selectedProductSUppliers$ = this.selectedProduct$
+    selectedProductSuppliers$ = this.selectedProduct$
       .pipe(
         filter(product => Boolean(product)),
         switchMap(selectedProduct => {
